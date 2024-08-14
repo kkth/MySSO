@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SSO Example</title>
+</head>
+<body>
+<h1>Welcome to SSO Example!</h1>
+
+<!-- 如果用户未认证，显示登录按钮 -->
+<div th:if="${not #authentication.principal.isAuthenticated()}">
+    <a th:href="@{/oauth2/authorization/keycloak}">Login with SSO</a>
+</div>
+
+<!-- 如果用户已认证，显示欢迎信息和注销按钮 -->
+<div th:if="${#authentication.principal.isAuthenticated()}">
+    <p>Welcome, <span th:text="${authentication.principal.name}">User</span>!</p>
+    <a th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>
